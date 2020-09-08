@@ -4,7 +4,7 @@ using System.Text;
 
 namespace WeatherApp.Infrastructure
 {
-    interface IWeatherForcastService
+    public interface IWeatherForcastService
     {
         int GetTemperture();
         int GetPrecipitation();
