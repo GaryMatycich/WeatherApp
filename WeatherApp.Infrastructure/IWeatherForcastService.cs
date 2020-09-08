@@ -7,8 +7,8 @@ namespace WeatherApp.Infrastructure
     interface IWeatherForcastService
     {
         int GetTemperture();
-        string GetPrecipitation();
-        int GetForcastNarrative();
+        int GetPrecipitation();
+        string GetForcastNarrative();
 
     }
 }
