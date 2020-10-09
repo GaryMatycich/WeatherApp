@@ -5,6 +5,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using WeatherApp.Api.WeatherChannel;
+using WeatherApp.Infrastructure;
+using WeatherApp.Infrastructure.Model;
 using WeatherApp.Web.Models;
 
 namespace WeatherApp.Web.Controllers
@@ -12,10 +15,14 @@ namespace WeatherApp.Web.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly IWeatherForcastService _weatherForcastService;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(
+            ILogger<HomeController> logger,
+            IWeatherForcastService weatherForcastService)
         {
             _logger = logger;
+            _weatherForcastService = weatherForcastService ?? throw new ArgumentNullException(nameof(weatherForcastService));
         }
 
         public IActionResult Index()
@@ -23,8 +30,9 @@ namespace WeatherApp.Web.Controllers
             return View();
         }
 
-        public IActionResult Privacy()
+        public async Task<IActionResult> Privacy()
         {
+            var result = await _weatherForcastService.GetForecastAsync("84003", ForecastInterval.Three);
             return View();
         }
 
