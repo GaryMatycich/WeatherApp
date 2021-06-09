@@ -26,7 +26,7 @@ namespace WeatherApp.Api.WeatherChannel
 
         public async Task<WeatherPayload> GetForecastAsync(string zip, ForecastInterval forecastInterval)
         {
-            var uri = $"/v1/location/{zip}:4:US/forecast/daily/{(int)forecastInterval}day.json?apiKey=320c9252a6e642f38c9252a6e682f3c6";
+            var uri = $"/v1/location/{zip}:4:US/forecast/daily/{(int)forecastInterval}day.json?apiKey=#############################";
             var json = await _httpClient.GetStringAsync(uri);
             return JsonSerializer.Deserialize<WeatherRoot>(json, _options).ToWeatherPayload();
         }
